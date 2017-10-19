@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service name="${name}" class="com.campus.inmemorydb.service.InmemorydbService">
+	<description>In-Memory DB Service</description>
+
+	<action service="${fullname}" name="setup" method="setup" txType="SUPPORTS">
+		<description />
+		<settings />
+		<header />
+		<param>
+			<PropertyRef componentName="${propertypoolloader}/DatabaseName" />
+			<PropertyRef componentName="${propertypoolloader}/CreateQuery" />
+			<PropertyRef componentName="${propertypoolloader}/TruncateStatement" required="false" />
+		</param>
+		<return />
+	</action>
+
+	<action service="${fullname}" name="insert" method="insert" txType="NEW">
+		<description />
+		<settings />
+		<header />
+		<param>
+			<PropertyRef componentName="${propertypoolloader}/DatabaseName" />
+			<PropertyRef componentName="${propertypoolloader}/InsertQuery" />
+			<PropertyRef componentName="${propertypoolloader}/Params" />
+		</param>
+		<return />
+	</action>
+
+	<action service="${fullname}" name="select" method="select" txType="NEW">
+		<description />
+		<settings />
+		<header />
+		<param>
+			<PropertyRef componentName="${propertypoolloader}/DatabaseName" />
+			<PropertyRef componentName="${propertypoolloader}/SelectQuery" />
+			<PropertyRef componentName="${propertypoolloader}/Params" required="false" />
+		</param>
+		<return>
+			<PropertyRef componentName="${propertypoolloader}/Result" />
+		</return>
+	</action>
+
+
+</service>

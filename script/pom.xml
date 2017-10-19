@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>jxframework</groupId>
+	<artifactId>service-inmemorydb</artifactId>
+	<version>${pom.build.version}</version>
+	<name>In-Memory DB Services Library</name>
+	<packaging>jar</packaging>
+	<dependencies>
+		<dependency>
+			<groupId>jxframework</groupId>
+			<artifactId>fwk-service</artifactId>
+			<version>6.0.7</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.derby</groupId>
+			<artifactId>derbyclient</artifactId>
+			<version>10.13.1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.derby</groupId>
+			<artifactId>derby</artifactId>
+			<version>10.13.1.1</version>
+		</dependency>
+	</dependencies>
+	<repositories>
+		<repository>
+			<id>campus-repo</id>
+			<name>nexus release</name>
+			<url>http://repo.campusops.net:8081/nexus/content/groups/campus-read/</url>
+			<layout>default</layout>
+		</repository>
+	</repositories>
+</project>

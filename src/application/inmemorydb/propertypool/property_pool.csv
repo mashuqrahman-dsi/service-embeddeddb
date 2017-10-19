@@ -1,0 +1,8 @@
+Name,Description,OverviewID,JavaType,Class,ColumnName,Encrypt,Required,MinVal,MaxVal,Pattern,Size,Options,DefaultVal,IsActive,ContentFilterKey
+DatabaseName,,,String,com.campus.data.BasicProperty,,0,1,,,,,,,1,
+Params,,,Map,com.campus.data.BasicProperty,,0,0,,,,,,,1,
+Result,,,Object,com.campus.data.BasicProperty,,0,0,,,,,,,1,
+SelectQuery,,,String,com.campus.data.BasicProperty,,0,1,,,,,,,1,
+InsertQuery,,,String,com.campus.data.BasicProperty,,0,1,,,,,,,1,
+CreateQuery,,,String,com.campus.data.BasicProperty,,0,1,,,,,,,1,
+TruncateStatement,,,String,com.campus.data.BasicProperty,,0,1,,,,,,,1,

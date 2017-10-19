@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component class="com.campus.component.ModuleLoader" interface="com.campus.service.InternalModule">
+  <constructor>
+    <string value="${fullname}"/>
+    <static class="com.campus.inmemorydb.InmemorydbModule" field="MODULE" />
+    <string value="Inmemorydb Services Module" />
+    <static class="com.campus.util.resource.CompositeResourceLoader" >
+      <method name="createResourceLoader">
+        <string value="application.AppServiceInmemorydbAnchor"/>
+        <string value="${namespace}.loader"/>
+        <string value="xml"/>
+      </method>
+    </static>
+  </constructor>
+  <methods>
+    <method name="addField" >
+      <string value="modulenamespace"/>
+      <string value="${namespace}"/>
+    </method>
+    <method name="addField" >
+      <string value="moduleloader"/>
+      <string value="${fullname}"/>
+    </method>
+    <method name="addField" >
+       <string value="modulename"/>
+       <static class="com.campus.inmemorydb.InmemorydbModule" field="MODULE" />
+    </method>	            
+    <method name="addField">
+      <string value="moduleanchor"/>
+      <string value="application.AppServiceInmemorydbAnchor"/>
+    </method>
+    <method name="addField" >
+      <string value="datasourceloader"/>
+      <string value="${fullname}/datasource"/>
+    </method>
+    <method name="addField" >
+      <string value="datasequenceloader"/>
+      <string value="${fullname}/datasequence"/>
+    </method>
+    <method name="addField" >
+	   <string value="propertysetloader"/>
+	   <string value="${fullname}/propertyset"/>
+	</method>
+    <method name="addFieldPropertyPoolLoader" >
+      <string value="propertypoolloader"/>
+      <string value="${fullname}/propertypool"/>
+    </method>
+    <method name="addFieldDataInfoLoader" >
+      <string value="datainfoloader"/>
+      <string value="${fullname}/datainfo"/>
+    </method>
+    <method name="addFieldDataProcessorLoader" >
+      <string value="dataprocessorloader"/>
+      <string value="${fullname}/dataprocessor"/>
+    </method>
+    <method name="addFieldDomainLoader" >
+      <string value="domainloader"/>
+      <string value="${fullname}/domain"/>
+    </method>
+    <method name="addFieldServiceLoader" >
+      <string value="serviceloader"/>
+      <string value="${fullname}/service"/>
+    </method>
+    <method name="addFieldTopicLoader" >
+      <string value="topicloader"/>
+      <string value="${fullname}/topic"/>
+    </method>
+  </methods>
+</component>
+

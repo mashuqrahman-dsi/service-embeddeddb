@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="service-inmemorydb" default="jar" basedir="./.." xmlns:artifact="antlib:org.apache.maven.artifact.ant">
+
+  <import file="build-properties.xml"/>
+
+  <!-- maven repository settings -->
+  <artifact:pom id="pom" file="script/pom.xml"/>
+  <artifact:dependencies pathId="dependencies" pomRefId="pom" scopes="provided, compile"/>
+
+  <target name="set.release.target">
+    <property name="target-repo-url" value="${release-repo-url}"/>
+    <property name="pom.build.version" value="${build.version}"/>
+  </target>
+  
+  <target name="set.snapshot.target">
+    <property name="target-repo-url" value="${snapshot-repo-url}" />
+    <property name="pom.build.version" value="${build.version}-SNAPSHOT"/>
+  </target>    
+  
+  <target name="release" depends="set.release.target, release.artifact"/>
+  <target name="snapshot" depends="set.snapshot.target, snapshot.artifact"/>
+    
+  <target name="release.artifact" depends="set.release.target, jar, attachments">
+    <artifact:deploy pomRefId="pom" file="${build.lib.dir}/${build.module}.jar">
+      <remoteRepository id="${repo-id}" url="${target-repo-url}"/>
+      <attach file="${build.lib.dir}/${build.module}-javadoc.jar" type="jar" classifier="javadoc"/>
+      <attach file="${build.lib.dir}/${build.module}-sources.jar" type="jar" classifier="sources"/>
+    </artifact:deploy>
+  </target>
+  
+  <target name="snapshot.artifact" depends="set.snapshot.target, jar">
+    <artifact:deploy pomRefId="pom" file="${build.lib.dir}/${build.module}.jar">
+      <remoteRepository id="${repo-id}" url="${target-repo-url}"/>
+    </artifact:deploy>
+  </target>
+  
+  <!-- DEFINE ALL PATHS HERE -->
+  <path id="javac.classpath">
+    <path refid="dependencies"/>
+  </path>
+  
+  
+  <!-- Clean build targets -->
+  <target name="clean" >
+    <echo>Cleaning all...</echo>
+    <delete dir="${build.dir}"/>
+  </target>
+  
+  
+  <!-- Prepare the build structure -->
+  <target name="prepare">
+    <mkdir dir="${build.dir}"/>
+    <mkdir dir="${build.doc.dir}"/>
+    <mkdir dir="${build.bin.dir}"/>
+    <mkdir dir="${build.lib.dir}"/>
+  </target>
+  
+  
+  <!-- Compile targets -->
+  <target name="compile" depends="prepare" >
+  	<javac debug="on" debuglevel="lines,vars,source" deprecation="on" classpathref="javac.classpath"
+  	     srcdir="${src.dir}"
+  	     includes="**/**.java"
+  	     destdir="${build.bin.dir}" />
+  </target>
+  
+  
+  <!-- tests -->
+  <!-- 
+  <target name="test" depends="jar">
+    <java classname="com.campus.service.Test" classpathref="javac.classpath">
+      <classpath>
+        <path refid="dependencies"/>
+        <pathelement path="${build.lib.dir}/service-event.jar"/>        
+      </classpath>
+    </java>
+  </target>
+   -->
+  
+  <!-- jar targets -->
+  <target name="jar" depends="prepare, compile">
+    <tstamp/>
+    <delete file="${build.lib.dir}/${build.module}.jar"/>
+    <jar destfile="${build.lib.dir}/${build.module}.jar">
+      <fileset dir="${build.bin.dir}">
+        <include name="**/**" />
+      </fileset>
+      <fileset dir="${src.dir}">
+        <exclude name="**/**.java"/>
+      </fileset>
+      <manifest>
+        <section name="Service Could">
+          <attribute name="Implementation-Title" value="${pom.name}"/>
+          <attribute name="Implementation-Version" value="${build.version}"/>
+          <attribute name="Implementation-Vendor" value="Jenzabar Inc."/>
+        </section>
+      </manifest>
+    </jar>
+  </target>
+  
+  
+  <target name="attachments" depends="sources, javadocs"/>
+  
+  <!-- package sources -->
+  <target name="sources">
+    <jar destfile="${build.lib.dir}/${build.module}-sources.jar">
+      <fileset dir="${src.dir}">
+        <include name="**/**.java"/>
+        <exclude name="**/Test.java"/>
+      </fileset>
+    </jar>   
+  </target>
+  
+  <!-- Create service-event javadoc -->
+  <target name="javadocs">
+    <delete dir="${build.doc.dir}"/>
+    <mkdir dir="${build.doc.dir}"/>
+    <javadoc
+       destdir="${build.doc.dir}"
+       author="true" version="true" use="true"
+       windowtitle="${build.module} -- v${build.version}"
+       doctitle="${build.module} -- v${build.version}"
+       classpathref="javac.classpath">
+      <packageset dir="${src.dir}" defaultexcludes="yes">
+        <include name="com/campus/**" />
+        <exclude name="**/Test.java"/>
+      </packageset>
+    </javadoc>
+    <jar destfile="${build.lib.dir}/${build.module}-javadoc.jar">
+      <fileset dir="${build.doc.dir}">
+	       <include name="**/**"/>
+      </fileset>
+    </jar>  	
+  </target>
+  
+</project>

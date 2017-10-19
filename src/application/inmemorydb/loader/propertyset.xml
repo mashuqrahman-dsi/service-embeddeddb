@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component class="com.campus.component.CompositeLoader" interface="com.campus.component.ComponentLoader">
+  <constructor>
+    <string value="${fullname}"/>
+  </constructor>
+  <methods>
+    <method name="addLoader">
+      <object class="com.campus.component.XMLLoader" interface="com.campus.component.ComponentLoader">
+        <constructor>
+          <string value="${fullname}"/>
+          <static class="com.campus.util.resource.CompositeResourceLoader" >
+            <method name="createResourceLoader">
+              <string value="${moduleanchor}"/>
+              <string value="${modulenamespace}.propertyset"/>
+              <string value="xml"/>
+            </method>
+          </static>
+        </constructor>
+      </object>
+    </method>
+  </methods>
+</component>
+
+
+

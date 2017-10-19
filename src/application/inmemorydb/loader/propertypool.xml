@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<singleton class="com.campus.component.CompositeLoader" interface="com.campus.component.ComponentLoader">
+  <constructor>
+    <string value="${fullname}"/>
+  </constructor>
+  <methods>
+    <method name="addLoader">
+      <object class="com.campus.component.DomainBasedLoader" interface="com.campus.component.ComponentLoader">
+        <constructor>
+          <string value="${fullname}"/>
+          <object class="com.campus.persistence.domain.DomainImpl" interface="com.campus.persistence.domain.DomainList">
+            <constructor>
+              <object class="com.campus.persistence.file.DelimitedResource" interface="com.campus.persistence.statement.PreparedData">
+                <constructor>
+                  <static class="com.campus.util.resource.CompositeResourceLoader" >
+                    <method name="createResourceLoader">
+                      <string value="${moduleanchor}"/>
+                      <string value="${modulenamespace}.propertypool"/>
+                      <string value="csv"/>
+                    </method>
+                  </static>
+                  <string value="property_pool" /> 
+                  <componentRef name="common.propertypool.PropertyAttributes" interface="java.util.List"/>
+                </constructor>
+                <methods>
+                  <method name="setNullRepresentation">
+                    <string value=""/>
+                  </method>
+                </methods>
+              </object>
+              <object class="com.campus.component.SingletonConstructor" interface="com.campus.persistence.domain.DomainConstructor">
+                <constructor>
+                  <string value="Name"/>
+                  <object class="com.campus.component.ClassConstructor" interface="com.campus.persistence.domain.DomainConstructor">
+                    <constructor>
+                      <string value="com.campus.data.BasicProperty"/>
+                    </constructor>
+                  </object>
+                </constructor>
+              </object>
+            </constructor>
+          </object>
+        </constructor>
+      </object>
+    </method>
+    <method name="addLoader">
+      <componentRef name="common.loader.commonproperty" interface="com.campus.component.ComponentLoader"/>
+    </method>
+  </methods>
+</singleton>
