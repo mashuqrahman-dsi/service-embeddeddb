@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project name="service-inmemorydb" default="jar" basedir="./.." xmlns:artifact="antlib:org.apache.maven.artifact.ant">
+<project name="service-embeddeddb" default="jar" basedir="./.." xmlns:artifact="antlib:org.apache.maven.artifact.ant">
 
   <import file="build-properties.xml"/>
 

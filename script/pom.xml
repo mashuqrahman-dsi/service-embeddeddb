@@ -2,7 +2,7 @@
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>jxframework</groupId>
-	<artifactId>service-inmemorydb</artifactId>
+	<artifactId>service-embeddeddb</artifactId>
 	<version>${pom.build.version}</version>
 	<name>In-Memory DB Services Library</name>
 	<packaging>jar</packaging>

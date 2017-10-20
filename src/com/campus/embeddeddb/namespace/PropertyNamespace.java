@@ -1,4 +1,4 @@
-package com.campus.inmemorydb.namespace;
+package com.campus.embeddeddb.namespace;
 
 import com.campus.data.PropertyName;
 

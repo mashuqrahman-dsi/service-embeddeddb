@@ -1,4 +1,4 @@
-package com.campus.inmemorydb;
+package com.campus.embeddeddb;
 
 import java.util.Map;
 
@@ -19,8 +19,8 @@ import com.campus.util.ReasonException;
 /**
  * Manages the discovery and retrieval of xml component definitions. 
  */
-public class InmemorydbModule {
-    static public final String MODULE = "inmemorydb";
+public class EmbeddeddbModule {
+    static public final String MODULE = "embeddeddb";
     static InternalModule _module;
     
     static private synchronized InternalModule init() {

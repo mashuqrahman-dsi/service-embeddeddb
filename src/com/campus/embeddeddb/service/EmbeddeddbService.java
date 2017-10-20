@@ -1,8 +1,8 @@
-package com.campus.inmemorydb.service;
+package com.campus.embeddeddb.service;
 
-import com.campus.inmemorydb.InmemorydbModule;
-import static com.campus.inmemorydb.namespace.PropertyNamespace.*;
-import static com.campus.inmemorydb.namespace.InmemorydbNamespace.*;
+import com.campus.embeddeddb.EmbeddeddbModule;
+import static com.campus.embeddeddb.namespace.PropertyNamespace.*;
+import static com.campus.embeddeddb.namespace.EmbeddeddbNamespace.*;
 import com.campus.common.ServiceNamespace;
 import com.campus.service.AbstractService;
 import com.campus.service.InternalAction;
@@ -25,15 +25,15 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @SuppressWarnings("unchecked")
-public class InmemorydbService extends AbstractService {
+public class EmbeddeddbService extends AbstractService {
   
 
-  private static final Logger _logger = Logger.getLogger(InmemorydbService.class.getName());
+  private static final Logger _logger = Logger.getLogger(EmbeddeddbService.class.getName());
   
   private static final String DB_URL = "jdbc:derby:%s;create=%b;user=guybrush;password=threepwood";
   private static final String DRIVER = "org.apache.derby.jdbc.EmbeddedDriver";
 
-  public InmemorydbService(String name$, String description$, InternalRedirect redirect$, List<InternalAction> actions$) {
+  public EmbeddeddbService(String name$, String description$, InternalRedirect redirect$, List<InternalAction> actions$) {
     super(name$, description$, redirect$, actions$);
   }
 

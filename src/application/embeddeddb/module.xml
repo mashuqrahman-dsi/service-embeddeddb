@@ -2,11 +2,11 @@
 <component class="com.campus.component.ModuleLoader" interface="com.campus.service.InternalModule">
   <constructor>
     <string value="${fullname}"/>
-    <static class="com.campus.inmemorydb.InmemorydbModule" field="MODULE" />
-    <string value="Inmemorydb Services Module" />
+    <static class="com.campus.embeddeddb.EmbeddeddbModule" field="MODULE" />
+    <string value="Embeddeddb Services Module" />
     <static class="com.campus.util.resource.CompositeResourceLoader" >
       <method name="createResourceLoader">
-        <string value="application.AppServiceInmemorydbAnchor"/>
+        <string value="application.AppServiceEmbeddeddbAnchor"/>
         <string value="${namespace}.loader"/>
         <string value="xml"/>
       </method>
@@ -23,11 +23,11 @@
     </method>
     <method name="addField" >
        <string value="modulename"/>
-       <static class="com.campus.inmemorydb.InmemorydbModule" field="MODULE" />
+       <static class="com.campus.embeddeddb.EmbeddeddbModule" field="MODULE" />
     </method>	            
     <method name="addField">
       <string value="moduleanchor"/>
-      <string value="application.AppServiceInmemorydbAnchor"/>
+      <string value="application.AppServiceEmbeddeddbAnchor"/>
     </method>
     <method name="addField" >
       <string value="datasourceloader"/>
